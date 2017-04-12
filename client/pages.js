@@ -37,13 +37,13 @@ export const loadPages = (pages) => ({
 //   }
 // }
 
-export const pages = (state = [], action) => {
+export const pages = (pages = [], action) => {
   switch(action.type) {
     case LOAD_PAGES:
       return action.pages;
     case ADD_PAGE:
-      return [action.page, ...state];
-    default: return state
+      return [action.page, ...pages];
+    default: return pages
   }
 }
 
