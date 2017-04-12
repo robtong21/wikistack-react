@@ -12,7 +12,7 @@ import axios from 'axios'
 const onAppEnter = () => {
   axios.get('/api/wiki')
     .then(res => {
-      console.log("res in onAppEnter", res)
+      // console.log("res in onAppEnter", res)
       store.dispatch(loadPages(res.data));
     });
 };
@@ -20,7 +20,7 @@ const onAppEnter = () => {
 const Routes = ({ initialPages }) => (
   <Router history={hashHistory}>
     <Route path="/" component={Layout} onEnter={ onAppEnter }>
-      <Route path="/wiki" component={WikiPages} />
+      <Route path="/wiki" component={WikiPagesContainer} />
       <Route path="/wiki/add" component={AddPage} />
 
     </Route>
@@ -31,6 +31,4 @@ const mapStateToProps = null;
 const mapDispatchToProps = dispatch => ({
   initialPages: () => dispatch(getAllPages())
 });
-// const mapDispatchToProps = { getAllPages }
-console.log("mapDispatchToProps", mapDispatchToProps)
 export default connect(mapStateToProps, mapDispatchToProps)(Routes);

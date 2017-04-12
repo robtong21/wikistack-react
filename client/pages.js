@@ -6,14 +6,9 @@ const LOAD_PAGES = 'LOAD_PAGES';
 const ADD_PAGE = 'ADD_PAGE';
 
 // action creators
-export const addPage = ({name, email, title, content, status, tags}) => ({
+export const addPage = (page) => ({
     type: ADD_PAGE,
-    name,
-    email,
-    title,
-    content,
-    status,
-    tags
+    page
 })
 
 export const loadPages = (pages) => ({
@@ -21,28 +16,13 @@ export const loadPages = (pages) => ({
   pages
 })
 
-// reducers
-// export const page = (state = {}, action) => {
-//   switch(action.type) {
-//     case ADD_PAGE:
-//       return {
-//         name: action.name,
-//         email: action.email,
-//         title: action.title,
-//         content: action.content,
-//         status: action.status,
-//         tags: action.tags
-//       }
-//     default: return state
-//   }
-// }
-
 export const pages = (pages = [], action) => {
   switch(action.type) {
     case LOAD_PAGES:
       return action.pages;
     case ADD_PAGE:
-      return [action.page, ...pages];
+      // return [...pages, action.page];
+      return pages.concat(action.page);
     default: return pages
   }
 }
@@ -52,9 +32,7 @@ export const postPage = newWikiPage => dispatch => {
     axios.post('/api/wiki', newWikiPage)
     .then(res => res.data)
     .then(page => {
-      console.log(page)
-      // const newPage = getState().pages.concat([page]);
-      // const newPage = pages.concat([page]);
+      // console.log(page)
       dispatch(addPage(page))
     })
 }

@@ -11,26 +11,9 @@ import Layout from './Layout';
 import { getAllPages } from './pages'
 import Routes from './Routes'
 
-// const onPagesEnter = (nextRouterState) => {
-//   store.dispatch(getAllPages())
-// }
-
 ReactDOM.render(
   <Provider store={store}>
     <Routes />
   </Provider>,
   document.getElementById('app')
 );
-
-// ReactDOM.render(
-//   <Provider store={store}>
-//   <Router>
-//     <Route path="/" component={Layout} onEnter={onPagesEnter}>
-//       <Route path="/wiki" component={WikiPages} />
-//       <Route path="/wiki/add" component={AddPage} />
-//       <IndexRedirect to="/wiki" />
-//     </Route>
-//   </Router>
-//   </Provider>,
-//   document.getElementById('app')
-// );

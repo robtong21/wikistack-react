@@ -3,33 +3,41 @@ import { connect } from 'react-redux';
 import store from './store'
 import { postPage } from './pages'
 
+
 class AddPage extends Component {
-  constructor(props) {
-    super(props)
-    this.handleSubmit = this.handleSubmit.bind(this)
+  constructor() {
+    super()
+    // this.handleChange = this.handleChange.bind(this)
+    // this.handleSubmit = this.handleSubmit.bind(this)
   }
 
-  handleSubmit(evt) {
-    evt.preventDefault();
-    const page = {
-      name: evt.target.name.value,
-      email: evt.target.email.value,
-      title: evt.target.title.value,
-      content: evt.target.content.value,
-      status: evt.target.status.value,
-      tags: evt.target.tags.value,
-    };
-    store.dispatch(postPage(page))
-    evt.target.name.value = '';
-    evt.target.email.value = '';
-    evt.target.title.value = '';
-    evt.target.content.value = '';
-    evt.target.status.value = '';
-    evt.target.tags.value = '';
-  }
+  // handleChange(evt) {
+  //   this.setState({ [evt.target.name]: evt.target.value })
+  // }
+
+  // handleSubmit(evt) {
+  //   evt.preventDefault();
+  //   const page = {
+  //     name: evt.target.name.value,
+  //     email: evt.target.email.value,
+  //     title: evt.target.title.value,
+  //     content: evt.target.content.value,
+  //     status: evt.target.status.value,
+  //     tags: evt.target.tags.value,
+
+  //   };
+  //   console.log(this.props)
+  //   // this.props.postPage(page);
+  //   store.dispatch(postPage(page))
+  //   evt.target.name.value = '';
+  //   evt.target.email.value = '';
+  //   evt.target.title.value = '';
+  //   evt.target.content.value = '';
+  //   evt.target.status.value = '';
+  //   evt.target.tags.value = '';
+  // }
 
   render () {
-    console.log("this.props.pages", this.props.pages)
     return (
       <div>
         <h3>Add a Page</h3>
@@ -91,21 +99,6 @@ class AddPage extends Component {
   }
 }
 
-const mapStateToProps = state => {
-  return {
-    pages: state.pages,
-  };
-};
-
-const mapDispatchToProps = (dispatch) => {
-  return {
-    // handleSubmit: (evt) => {
-    //   dispatch(postPage(page));
-    // }
-  }
-};
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(AddPage);
+const mapState = ({ pages }) => ({ pages });
+const mapDispatch = { postPage };
+export default connect(mapState, mapDispatch)(AddPage);
